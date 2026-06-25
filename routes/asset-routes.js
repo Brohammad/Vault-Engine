@@ -6,4 +6,5 @@ const {createAsset,getMyAssets,deleteAsset}=require('../controllers/asset-contro
 router.post('/create',authMiddleware,upload.single('file'),createAsset);
 router.get('/my-assets',authMiddleware,getMyAssets);
 router.delete('/:id',authMiddleware,deleteAsset);
+router.get('/download/:id',authMiddleware,)
 module.exports=router
