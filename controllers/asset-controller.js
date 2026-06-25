@@ -4,23 +4,20 @@ const Asset = require('../models/Asset');
 const createAsset = async (req, res) => {
     try {
 
-        const { filename, originalName, fileType, fileSize } = req.body;
-
-        if (!filename || !originalName || !fileType || !fileSize) {
+        if(!req.file)
             return res.status(400).json({
                 success: false,
-                message: "Please provide all required fields"
-            });
-        }
-
-        const asset = await Asset.create({
-            filename,
-            originalName,
-            fileType,
-            fileSize,
-            owner: req.user.id
-        });
-
+                message:"Please upload a file"
+        })
+        const asset=await Asset.create({
+            filename:req.file.filename,
+            originalName:req.file.originalname,
+            fileType:req.file.mimetype,
+            fileSize:req.file.size,
+            filePath:req.file.path,
+            owner:req.user.id
+        })
+        console.log(asset);
         res.status(201).json({
             success: true,
             message: "Asset created successfully",
