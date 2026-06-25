@@ -9,7 +9,7 @@ const AssetSchema=new mongoose.Schema({
         required:true
     },
     fileType:{
-        type:Sting,
+        type:String,
         required:true
     },
     fileSize:{
@@ -25,4 +25,4 @@ const AssetSchema=new mongoose.Schema({
        timestamps:true
     }
 );
-modules.exports=mongoose.model('Asset',AssetSchema)
+module.exports=mongoose.model('Asset',AssetSchema)
