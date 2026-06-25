@@ -59,7 +59,7 @@ const loginUser=async(req,res)=>{
             id:user._id,
             role:user.role
         },process.env.jsonwebtoken,{
-            expiresIn:'1h'
+            expiresIn:'5h'
         })
         res.status(200).json({
             success:true,

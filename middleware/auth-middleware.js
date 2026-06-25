@@ -4,10 +4,11 @@ const authMiddleware=(req,res,next)=>{
     if(!authHeader||!authHeader.startsWith('Bearer')){
         return res.status(401).json({
             message:'Unauthorized'
-        })
+        })}
         try{
+            console.log(req.user);
             const token=authHeader.split(' ')[1];
-            const decoded=jwt.verify(token,process.env.jwtsecret);
+            const decoded=jwt.verify(token,process.env.jsonwebtoken);
             req.user=decoded;
             next();
         }
@@ -16,6 +17,5 @@ const authMiddleware=(req,res,next)=>{
                 message:'Invalid token'
             })
         }
-    }
 }
 module.exports=authMiddleware;
